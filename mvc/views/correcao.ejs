@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Redação Enviada</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    pre {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>📑 Redação enviada com sucesso!</h1>
+    <p><strong>Nome original:</strong> <%= originalname %></p>
+    <p><strong>Arquivo salvo como:</strong> <%= filename %></p>
+    <p><a href="/uploads/<%= filename %>" target="_blank">📥 Baixar Redação</a></p>
+    <p><a href="/">⬅️ Enviar outra</a></p>
+
+    <hr>
+
+    <h2>📝 Conteúdo da Redação:</h2>
+    <pre><%= chat %></pre>
+  </div>
+</body>
+</html>

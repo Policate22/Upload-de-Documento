@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload de Documento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #e0e7ff, #f0f4ff);
+      color: #333;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+      animation: fadeInUp 0.7s ease;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #6b7280;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .file-label {
+      background-color: #f9fafb;
+      padding: 14px;
+      border: 2px dashed #9ca3af;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .file-label:hover {
+      background-color: #f3f4f6;
+      border-color: #6d28d9;
+      color: #4c1d95;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    button {
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      border: none;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+    }
+
+    #file-name {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #374151;
+      text-align: left;
+    }
+
+    .file-info {
+      background-color: #f1f5f9;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .file-info img {
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <h1>📄 Upload de Documento</h1>
+      <p>Escolha um arquivo e envie para o servidor.</p>
+      <form action="/correcao" method="POST" enctype="multipart/form-data">
+        <label class="file-label">
+          <input type="file" name="document" id="file-input" required>
+          Selecionar arquivo
+        </label>
+        <button type="submit">Enviar 📤</button>
+      </form>
+      <p id="file-name">Nenhum arquivo selecionado</p>
+      <div id="file-info" class="file-info" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Pdf_icon.svg" alt="Documento">
+        <span id="file-name-display">Nenhum arquivo selecionado</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const fileNameDisplay = document.getElementById('file-name');
+    const fileInfo = document.getElementById('file-info');
+    const fileNameDisplayElement = document.getElementById('file-name-display');
+
+    fileInput.addEventListener('change', function() {
+      const file = fileInput.files[0];
+      if (file) {
+        fileNameDisplayElement.textContent = file.name;
+        fileNameDisplay.textContent = `Arquivo selecionado: ${file.name}`;
+        fileInfo.style.display = 'flex';
+      } else {
+        fileInfo.style.display = 'none';
+        fileNameDisplay.textContent = "Nenhum arquivo selecionado";
+      }
+    });
+  </script>
+</body>
+</html>
