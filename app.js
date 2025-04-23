@@ -86,4 +86,4 @@ App.post("/correcao",upload.single("document"), async (req, res) => {
 });
 
 // Iniciar o servidor
-App.listen(3000, () => console.log("Aplicação No Ar"));
+App.listen(process.env.PORT || 3000, () => console.log("Aplicação No Ar"));
